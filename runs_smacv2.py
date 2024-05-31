@@ -2,9 +2,9 @@ import os
 
 configs=["dcg", "qmix", "iql", "vdn"] 
 maps = ["sc2_gen_protoss"] 
-units=["5v5"] 
-GPU = 7
-seed_max=3
+units=["20v20"] 
+GPU = 0
+seed_max=1
 
 parallel = True 
 

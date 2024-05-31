@@ -14,7 +14,7 @@ from runners import REGISTRY as r_REGISTRY
 from controllers import REGISTRY as mac_REGISTRY
 from components.episode_buffer import ReplayBuffer
 from components.transforms import OneHot
-import setproctitle
+import setproctitle 
 
 def run(_run, _config, _log):
 
@@ -34,7 +34,13 @@ def run(_run, _config, _log):
     _log.info("\n\n" + experiment_params + "\n")
 
     # configure tensorboard logger
-    unique_token = "{}__{}".format(args.name, datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
+    # unique_token = "{}__{}".format(args.name, datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
+    unique_token = "{}".format("--".join([
+        args.env_args["map_name"], 
+        args.name, 
+        str(args.env_args["capability_config"]["n_units"])+"v"+str(args.env_args["capability_config"]["n_enemies"]), 
+        "seed_"+str(args.seed)
+    ]))
     args.unique_token = unique_token
     setproctitle.setproctitle(unique_token)
     if args.use_tensorboard:
