@@ -34,7 +34,15 @@ def run(_run, _config, _log):
     _log.info("\n\n" + experiment_params + "\n")
 
     # configure tensorboard logger
-    unique_token = "{}__{}".format(args.name, datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
+    # unique_token = "{}__{}".format(args.name, datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
+    print(args.cg_edges)
+    unique_token = "{}".format("--".join([
+        args.env_args["map_name"], 
+        args.name, 
+        args.cg_edges,
+        str(args.env_args["capability_config"]["n_units"])+"v"+str(args.env_args["capability_config"]["n_enemies"]), 
+        "seed_"+str(args.seed)
+    ]))
     args.unique_token = unique_token
     setproctitle.setproctitle(unique_token)
     if args.use_tensorboard:

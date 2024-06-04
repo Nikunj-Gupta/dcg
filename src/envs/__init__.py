@@ -11,8 +11,7 @@ REGISTRY["sc2"] = partial(env_fn, env=StarCraft2Env)
 REGISTRY["sc2wrapped"] = partial(env_fn, env=StarCraftCapabilityEnvWrapper)
 
 if sys.platform == "linux":
-    os.environ.setdefault("SC2PATH",
-                          os.path.join(os.getcwd(), "3rdparty", "StarCraftII"))
+    os.environ.setdefault("SC2PATH", "~/StarCraftII")
 
 from .stag_hunt import StagHunt
 REGISTRY["stag_hunt"] = partial(env_fn, env=StagHunt)
