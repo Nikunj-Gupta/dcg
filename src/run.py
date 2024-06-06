@@ -35,12 +35,22 @@ def run(_run, _config, _log):
 
     # configure tensorboard logger
     # unique_token = "{}__{}".format(args.name, datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
-    unique_token = "{}".format("--".join([
-        args.env_args["map_name"], 
-        args.name, 
-        str(args.env_args["capability_config"]["n_units"])+"v"+str(args.env_args["capability_config"]["n_enemies"]), 
-        "seed_"+str(args.seed)
-    ]))
+    # print(args.cg_edges)
+    if args.env == "sc2" or args.env == "sc2wrapped": 
+        unique_token = "StarCraft2/{}".format("--".join([
+            args.env_args["map_name"], 
+            args.name, 
+            args.cg_edges,
+            str(args.env_args["capability_config"]["n_units"])+"v"+str(args.env_args["capability_config"]["n_enemies"]), 
+            "seed_"+str(args.seed)
+        ]))
+    elif args.env == "stag_hunt": 
+        unique_token = "stag_hunt/{}".format("__".join([
+            args.env, 
+            args.name, 
+            "miscapture_punishment="+str(args.env_args["miscapture_punishment"]), 
+            "seed_"+str(args.seed)
+        ]))
     args.unique_token = unique_token
     setproctitle.setproctitle(unique_token)
     if args.use_tensorboard:

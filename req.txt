@@ -1,0 +1,8 @@
+git+https://github.com/oxwhirl/smacv2.git
+torch-scatter -f https://data.pyg.org/whl/torch-2.3.0+cu121.html
+numpy
+sacred
+torch
+pyyaml
+setproctitle
+tensorboard_logger
