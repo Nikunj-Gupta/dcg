@@ -3,7 +3,7 @@ from __future__ import division
 from __future__ import print_function
 
 from pysc2.maps import lib
-from smac.env.starcraft2.maps import smac_maps
+from smacv2.env.starcraft2.maps import smac_maps
 
 map_param_registry = {
     "1o_10b_vs_1r": {
