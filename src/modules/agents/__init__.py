@@ -15,3 +15,8 @@ from .gnn_agent_feat import GNNFeatureAgent
 REGISTRY["gat_feat"] = GNNFeatureAgent
 REGISTRY["gatv2_feat"] = GNNFeatureAgent
 REGISTRY["gcn_feat"] = GNNFeatureAgent
+
+from .gtn_agent import GTNAgent
+REGISTRY["gtn"] = GTNAgent
+from .gtn_agent_feat import GTNFeatureAgent
+REGISTRY["gtn_feat"] = GTNFeatureAgent 

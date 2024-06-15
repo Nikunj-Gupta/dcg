@@ -28,13 +28,7 @@ class GNNAgent(nn.Module):
 
         self.rnn = nn.GRUCell(args.rnn_hidden_dim, args.rnn_hidden_dim)
         self.fc2 = nn.Linear(args.rnn_hidden_dim, args.n_actions)
-
-        if getattr(args, "use_layer_norm", False):
-            self.layer_norm = LayerNorm(args.rnn_hidden_dim)
-        
-        if getattr(args, "use_orthogonal", False):
-            orthogonal_init_(self.fc1)
-            orthogonal_init_(self.fc2, gain=args.gain)
+        self.layer_norm = LayerNorm(args.rnn_hidden_dim)
 
     def init_hidden(self):
         # make hidden states on same device as model
