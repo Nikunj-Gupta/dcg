@@ -35,11 +35,12 @@ def run(_run, _config, _log):
 
     # configure tensorboard logger
     # unique_token = "{}/{}__{}".format(args.env, args.name, datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
-    unique_token = "{}/{}__{}__{}".format(args.env, args.env, args.name, "seed_"+str(args.seed)) 
+    unique_token = "{}/{}__{}__{}__{}__{}".format(args.env, args.env, args.name, args.agent, args.cg_edges, "seed_"+str(args.seed)) 
     if args.env == "sc2" or args.env == "sc2wrapped": 
         unique_token = "StarCraft2/{}".format("--".join([
             args.env_args["map_name"], 
             args.name, 
+            args.agent, 
             args.cg_edges,
             str(args.env_args["capability_config"]["n_units"])+"v"+str(args.env_args["capability_config"]["n_enemies"]), 
             "seed_"+str(args.seed)
@@ -48,6 +49,8 @@ def run(_run, _config, _log):
         unique_token = "stag_hunt/{}".format("__".join([
             args.env, 
             args.name, 
+            args.agent,
+            args.cg_edges,
             "miscapture_punishment="+str(args.env_args["miscapture_punishment"]), 
             "seed_"+str(args.seed)
         ]))

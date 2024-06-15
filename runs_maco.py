@@ -1,6 +1,6 @@
 import os 
 
-configs=["dcg", "iql", "vdn", "qmix"] 
+configs=["cg", "dcg"]
 maps = ["aloha", "disperse", "gather", "hallway", "pursuit"] 
 GPU = 1 
 seed_max=1 
