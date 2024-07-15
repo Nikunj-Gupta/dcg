@@ -1,29 +1,15 @@
 import os 
 
-def exps(configs, maps, agents, GPU, seed_max, parallel): 
-    for map in maps: 
-        for config in configs: 
-            for agent in agents: 
-                for _ in range(seed_max): 
-                    command = f"CUDA_VISIBLE_DEVICES={GPU} python3 src/main.py --config={config} --env-config={map}  with agent={agent} cg_edges=full" 
-                    if parallel: command += " &"
-                    os.system(command) 
+def baselines(): 
+    CONFIGS = ["qmix", "vdn", "iql", "qtran", "dcg", "cg"]
+    ENVS = ["gather", "hallway", "pursuit", "disperse", "sensor", "aloha"] 
+    SEEDS = 3 
+    PARALLEL = False 
 
-
-exps(
-    configs=["dcg"], 
-    maps=["gather", "hallway", "pursuit", "disperse", "sensor", "aloha"], 
-    agents=["gtn_feat"], 
-    GPU=0, 
-    seed_max=1, 
-    parallel=False 
-)
-
-exps(
-    configs=["dcg"], 
-    maps=["gather", "hallway", "pursuit", "disperse", "sensor", "aloha"], 
-    agents=["gcn_feat", "gat_feat", "gatv2_feat"], 
-    GPU=1, 
-    seed_max=1, 
-    parallel=False 
-) 
+    for s in range(SEEDS): 
+        for e in ENVS:
+            for a in CONFIGS: 
+                command = f"python3 src/main.py --config={a} --env-config={e} with use_cuda=False seed={s}" 
+                if PARALLEL: command += " &" 
+                os.system(command) 
+baselines() 
